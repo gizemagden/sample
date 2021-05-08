@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function bindEvent(element, eventName, eventHandler) {
@@ -10,14 +10,29 @@ function bindEvent(element, eventName, eventHandler) {
 }
 
 const App = () => {
+  const [exampleColor, setExampleColor] = useState('');
+  const [firstOptions, setFirstOptions] = useState(''); // eslint-disable-line
+  const [secondOptions, setSecondOptions] = useState(''); // eslint-disable-line
+
   useEffect(()=> {
     bindEvent(window, 'message', function (e) {
-      console.log(e);
+      console.log(e.data);
+      const { color, firstinputs, secondinputs } = e.data;
+      setExampleColor(color);
+      setFirstOptions(firstinputs);
+      setSecondOptions(secondinputs);
     });
   }, []);
 
   return (
-    <div className="App"/>
+    <div
+      className="App"
+        style={{
+          backgroundColor: exampleColor
+        }}
+    >
+      Test
+    </div>
   );
 }
 
