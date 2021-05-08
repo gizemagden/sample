@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
 import './App.css';
 
-function App() {
+function bindEvent(element, eventName, eventHandler) {
+  if (element.addEventListener) {
+    element.addEventListener(eventName, eventHandler, false);
+  } else if (element.attachEvent) {
+    element.attachEvent('on' + eventName, eventHandler);
+  }
+}
+
+const App = () => {
+  useEffect(()=> {
+    bindEvent(window, 'message', function (e) {
+      console.log(e);
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="App"/>
   );
 }
 
