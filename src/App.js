@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import DropboxUpload from './Dropbox';
 import './App.css';
 
 function bindEvent(element, eventName, eventHandler) {
@@ -32,6 +33,7 @@ const App = () => {
         }}
     >
       Test
+      <DropboxUpload/>
     </div>
   );
 }
