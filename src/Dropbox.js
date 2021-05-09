@@ -31,7 +31,7 @@ function uploadFile() {
     }
 
     const task = workItems.reduce((acc, blob, idx, items) => {
-      if (idx == 0) {
+      if (idx === 0) {
         // Starting multipart upload of file
         return acc.then(function () {
           return dbx.filesUploadSessionStart({ close: false, contents: blob })
